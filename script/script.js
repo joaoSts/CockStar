@@ -14,6 +14,12 @@ function toggleMenu(event) {
 btnMobile.addEventListener("click", toggleMenu);
 btnMobile.addEventListener("touchstart", toggleMenu);
 
+
+
+/*kghjgfyf*/
+
+
+
 function carregar() {
   const url = (id) =>
     `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${i}`;
@@ -23,11 +29,12 @@ function carregar() {
   }
   Promise.all(bebida).then((data) => {
     const lista = data.reduce((acumulador, data) => {
-      acumulador += `<li class="list"><img src="${data.drinks[0].strDrinkThumb}"><h2>${data.drinks[0].strDrink}</h2><h3>Categoria:</h3><p>${data.drinks[0].strCategory}-${data.drinks[0].strAlcoholic}</p> <button>ver ingredientes</button></li>`;
+      acumulador += `<li class="list" id="${data.drinks[0].idDrink}""><img src="${data.drinks[0].strDrinkThumb}"><h2>${data.drinks[0].strDrink}</h2><h3>Categoria:</h3><p>${data.drinks[0].strCategory}-${data.drinks[0].strAlcoholic}</p><button>ver ingredientes</button></li>`;
       return acumulador;
-    }, "");
+    },"");
     const ul = document.querySelector(".lista");
     ul.innerHTML = lista;
+    
   });
 }
 function ingredientes2() {
@@ -58,7 +65,7 @@ function Search() {
   Promise.all(b).then((data) => {
     const lista = data.reduce((acumulador, data) => {
       for (let i = 0; i < data.drinks.length; i++) {
-        acumulador += `<li class=".lista"><img src="${data.drinks[i].strDrinkThumb}"><h2>${data.drinks[i].strDrink}</h2><h3>Categoria:</h3><p>${data.drinks[i].strCategory}-${data.drinks[i].strAlcoholic}</p> <button>ver ingredientes</button></li>`;
+        acumulador += `<li class=".lista"><img src="${data.drinks[i].strDrinkThumb}"><h2 id="nome">${data.drinks[i].strDrink}</h2><h3>Categoria:</h3><p>${data.drinks[i].strCategory}-${data.drinks[i].strAlcoholic}</p> <button>ver ingredientes</button></li>`;
       }
       return acumulador;
     }, "");
@@ -69,23 +76,16 @@ function Search() {
   });
 }
 
-/*function Search(){
-const url=`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${search}`
-const S=[]
-fetch(url).then(res=>res.json())
-
-.then(data=>{
-  for(let i=0; i<data.drinks.length; i++){
-   S.push(data.drinks[i].strDrink)
-      console.log(data.drinks[i].strDrink);
-      let SearchCont=document.querySelector(".container")
-    }})
-    const a=S.reduce((acu)=>{
-           acu+=`${data.drinks[i].strDrink}`
-           return acu
+function modal(){
+ const valor=document.querySelector("#d").value
+  const url=`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${valor}`
+  fetch(url).then(resp=>resp.json())
+  .then(data=>{
+      for(var i=1; i<5; i++)
+      console.log(data.drinks[0][`strIngredient${i}`]);
   })
-  console.log(a);
-}*/
+}
+
 
 carregar();
 ingredientes2();
