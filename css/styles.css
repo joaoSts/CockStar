@@ -387,4 +387,10 @@ background-color:hsl(256, 72%, 66%) ;
         max-width: 80%;
         bottom: 4px;
     }
+      .section-search p{
+        font-size: 15px;
+    }
+    #nome{
+        font-size: 17px;
+    }
  }
