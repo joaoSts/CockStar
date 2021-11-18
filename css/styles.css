@@ -348,6 +348,9 @@ background-color:hsl(256, 72%, 66%) ;
     height: 30px;
     margin: 0px;
 }
+#menu a{
+      font-size:11px;   
+     }
 .cabecalho button{
    font-size: 13px;
 }
